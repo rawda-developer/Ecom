@@ -1,0 +1,52 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Store{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 px-3 py-3">
+            <a href="{% url 'store' %}" class="btn btn-outline-dark mb-3"> &#8592; Continue shopping</a>
+
+            <div class="card mb-4 box-shadow">
+                <table class="table">
+                    <tr>
+                        <th>Items: <strong>3</strong> </th>
+                        <th>Total: <strong>$100</strong> </th>
+                        <th> <a href="{% url 'checkout' %}" style="float:right;" class="btn btn-success"> Checkout </a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <table class="table">
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{% static 'images/placeholder.png' %}" alt="" srcset="">
+
+                        </td>
+                        <td>Product</td>
+                        <td>$20</td>
+                        <td>
+                            <div class="d-flex flex-row" style="align-items: center;">
+                               3&nbsp;
+                                <div class="d-flex flex-column">
+                                    <img class="arrow" src="{% static 'images/caret-up-fill.svg'%}" alt="" srcset="">
+                                    <img class="arrow" src="{% static 'images/caret-down-fill.svg'%}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

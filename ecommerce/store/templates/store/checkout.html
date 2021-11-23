@@ -1,0 +1,56 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %}Store{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 py-2 px-1">
+            <div class="card box-shadow py-2">
+                <form>
+                    <div class="d-flex flex-row">
+                        <input type="text" class="form-control mx-2" placeholder="Name..">
+                        <input type="email" class="form-control mx-2" placeholder="Email..">
+                    </div>
+                    <br>
+                    <hr>
+                    <h3 class="mx-3">Shipping Information</h3>
+                    <div class="d-flex flex-row">
+                        <input type="text" class="form-control mx-2 my-2" placeholder="Address..">
+                        <input type="text" class="form-control mx-2 my-2" placeholder="City..">
+                    </div>
+                    <hr>
+                    <div class="d-flex flex-row">
+                        <input type="text" class="form-control mx-2 my-2" placeholder="State..">
+                        <input type="text" class="form-control mx-2 my-2" placeholder="Zip code..">
+                    </div>
+
+                    <button type="submit" class="btn btn-success form-control">Continue</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6 py-2 px-1">
+            <div class="card mb-4 box-shadow">
+                <a href="{% url 'cart' %}" class="btn btn-outline-dark mx-2 my-2" style="width: 200px;"> &#8592; Back to Cart</a>
+                <table class="table">
+
+                    <tr>
+                        <td>
+                            <img src="{% static 'images/placeholder.png' %}" alt="" srcset="">
+
+                        </td>
+                        <td>Product</td>
+                        <td>$20</td>
+                        <td>
+                            <div class="d-flex flex-row" style="align-items: center;">
+                                3&nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
