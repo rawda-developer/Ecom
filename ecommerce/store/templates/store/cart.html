@@ -2,51 +2,53 @@
 {% load static %}
 {% block title %}Store{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 px-3 py-3">
-            <a href="{% url 'store' %}" class="btn btn-outline-dark mb-3"> &#8592; Continue shopping</a>
 
-            <div class="card mb-4 box-shadow">
-                <table class="table">
-                    <tr>
-                        <th>Items: <strong>3</strong> </th>
-                        <th>Total: <strong>$100</strong> </th>
-                        <th> <a href="{% url 'checkout' %}" style="float:right;" class="btn btn-success"> Checkout </a>
-                        </th>
-                    </tr>
-                </table>
+<div class="row">
+    <div class="col-lg-12 px-3">
+        <a href="{% url 'store' %}" class="btn btn-outline-dark mb-3"> &#8592; Continue shopping</a>
+
+        <div class="card mb-4 py-2 px-4 box-shadow">
+            <div class="d-flex flex-row" style="align-items: center;">
+                <p style="flex-grow: 1"><strong>Items: </strong>{{order.get_cart_items}}</p>
+                <p style="flex-grow: 1"><strong>Total: </strong>{{order.get_cart_total|floatformat:2}}</p>
+                <div style="align-self: flex-end; flex-grow: 2;"><a href="{% url 'checkout' %}" style="float:right;" class="btn btn-success"> Checkout </a></div>
             </div>
-            <div class="card mb-4 box-shadow">
-                <table class="table">
-                    <tr>
-                        <th>
 
-                        </th>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="{% static 'images/placeholder.png' %}" alt="" srcset="">
+        </div>
+        <div class="card mb-4 box-shadow">
+            <table class="table">
+                <tr>
+                    <th>
 
-                        </td>
-                        <td>Product</td>
-                        <td>$20</td>
-                        <td>
-                            <div class="d-flex flex-row" style="align-items: center;">
-                               3&nbsp;
-                                <div class="d-flex flex-column">
-                                    <img class="arrow" src="{% static 'images/caret-up-fill.svg'%}" alt="" srcset="">
-                                    <img class="arrow" src="{% static 'images/caret-down-fill.svg'%}" alt="" srcset="">
-                                </div>
+                    </th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+                {% for item in items %}
+                <tr>
+                    <td>
+                        <img src="{{item.product.image.url}}" style="width: auto;height: 3rem;" alt="" srcset="">
+
+                    </td>
+                    <td>{{item.product.name}}</td>
+                    <td>${{item.product.price|floatformat:2}}</td>
+                    <td>
+                        <div class="d-flex flex-row" style="align-items: center;">
+                            {{item.quantity}}&nbsp;
+                            <div class="d-flex flex-column">
+                                <img class="arrow" src="{% static 'images/caret-up-fill.svg'%}" alt="" srcset="">
+                                <img class="arrow" src="{% static 'images/caret-down-fill.svg'%}" alt="" srcset="">
                             </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                        </div>
+                    </td>
+                    <td>{{item.get_total}}</td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </div>
+
 {% endblock %}

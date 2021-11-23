@@ -5,11 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 py-2 px-1">
-            <div class="card box-shadow py-2">
+            <div class="card box-shadow py-2 px-2">
                 <form>
                     <div class="d-flex flex-row">
-                        <input type="text" class="form-control mx-2" placeholder="Name..">
-                        <input type="email" class="form-control mx-2" placeholder="Email..">
+                        <input type="text" class="form-control mx-2 my-2" placeholder="Name..">
+                        <input type="email" class="form-control mx-2 my-2" placeholder="Email..">
                     </div>
                     <br>
                     <hr>
@@ -28,25 +28,28 @@
                 </form>
             </div>
         </div>
-        <div class="col-lg-6 py-2 px-1">
-            <div class="card mb-4 box-shadow">
-                <a href="{% url 'cart' %}" class="btn btn-outline-dark mx-2 my-2" style="width: 200px;"> &#8592; Back to Cart</a>
-                <table class="table">
-
-                    <tr>
-                        <td>
-                            <img src="{% static 'images/placeholder.png' %}" alt="" srcset="">
-
-                        </td>
-                        <td>Product</td>
-                        <td>$20</td>
-                        <td>
-                            <div class="d-flex flex-row" style="align-items: center;">
-                                3&nbsp;
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+        <div class="col-lg-6 py-2 px-3">
+            <div class="card mb-4 px-3 py-2 box-shadow">
+                <a href="{% url 'cart' %}" class="btn btn-outline-dark mx-2 my-2" style="width: 200px;"> &#8592; Back to
+                    Cart</a>
+                <hr>
+                <h2>Order Summary</h2>
+                <br>
+                {% for item in items %}
+                <div class="d-flex flex-row">
+                    <div style="flex-grow: 3;"><img src="{{item.product.image.url}}" style="height: 3rem;" alt=""
+                            srcset=""></div>
+                    <div style="flex-grow: 2">{{item.product.name}}</div>
+                    <div style="flex-grow: 2;">${{item.product.price|floatformat:2}}</div>
+                    <div style="flex-grow: 2;">{{item.quantity}}</div>
+                </div>
+                <hr>
+                {% endfor %}
+                <div>
+                    <strong>Items: </strong>{{order.get_cart_items}}
+                    <br>
+                    <strong>Total: </strong>{{order.get_cart_total}}
+                </div>
             </div>
         </div>
 
